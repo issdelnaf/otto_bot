@@ -14,67 +14,54 @@ class ModesPage extends StatefulWidget {
 class _ModesPageState extends State<ModesPage> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 430),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black, Color(0xFF4F0C0C)],
-                  stops: [0, 1],
-                  begin: AlignmentDirectional(0, -1),
-                  end: AlignmentDirectional(0, 1),
-                ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 430),
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            padding: EdgeInsets.all(24.0),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.black, Color(0xFF4F0C0C)],
+                stops: [0, 1],
+                begin: AlignmentDirectional(0, -1),
+                end: AlignmentDirectional(0, 1),
               ),
-              child: SafeArea(
-                child: Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildModeButton(
-                        'MANUAL',
-                        () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ManualControlPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 30),
-                      _buildModeButton(
-                        'AUTO',
-                        () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const AutomaticPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 30),
-                      _buildModeButton(
-                        'MOOD',
-                        () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const MoodBasedPage(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+            ),
+            child: SafeArea(
+              child: Align(
+                alignment: const AlignmentDirectional(0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildModeButton('MANUAL', () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ManualControlPage(),
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 30),
+                    _buildModeButton('AUTO', () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AutomaticPage(),
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 30),
+                    _buildModeButton('MOOD', () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MoodBasedPage(),
+                        ),
+                      );
+                    }),
+                  ],
                 ),
               ),
             ),
@@ -97,9 +84,7 @@ class _ModesPageState extends State<ModesPage> {
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: const Color(0xFFFFFDFD),
-          ),
+          border: Border.all(color: const Color(0xFFFFFDFD)),
         ),
         child: Align(
           alignment: const AlignmentDirectional(0, 0),
