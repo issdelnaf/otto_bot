@@ -37,6 +37,7 @@ dependencies:
   flutter_animate: ^4.5.2
   google_fonts: ^6.3.3
   flutter_blue_plus: ^2.0.2
+  flutter_native_splash: ^2.4.7
 
 dev_dependencies:
   flutter_test:

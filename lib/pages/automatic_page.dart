@@ -11,24 +11,28 @@ class AutomaticPage extends StatefulWidget {
 class _AutomaticPageState extends State<AutomaticPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 430),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black, Color(0xFF4F0C0C)],
-                  stops: [0, 1],
-                  begin: AlignmentDirectional(0, -1),
-                  end: AlignmentDirectional(0, 1),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 430),
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.black, Color(0xFF4F0C0C)],
+                    stops: [0, 0.9],
+                    begin: AlignmentDirectional(0, -1),
+                    end: AlignmentDirectional(0, 1),
+                  ),
                 ),
-              ),
-              child: Stack(
+                child: Stack(
                 children: [
                   // Animation
                   Align(
@@ -96,6 +100,7 @@ class _AutomaticPageState extends State<AutomaticPage> {
           ),
         ),
       ),
+    ),
     );
   }
 }
