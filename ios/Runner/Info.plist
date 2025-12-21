@@ -47,6 +47,10 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<true/>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+		<string>Need bluetooth to connect to Otto Bot</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>Need bluetooth to connect to Otto Bot</string>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
 	</dict>
