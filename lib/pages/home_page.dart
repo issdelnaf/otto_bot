@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 const ScanPage(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-                  // Use a fade transition to avoid background flashing
+                  // fade transition
                   return FadeTransition(
                     opacity: CurvedAnimation(
                       parent: animation,

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,10 +15,19 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
   final OttoBluetoothService _bluetoothService = OttoBluetoothService();
   bool _isScanning = false;
+  StreamSubscription<bool>? _scanningSubscription;
 
   @override
   void initState() {
     super.initState();
+    // Listen to actual scanning state
+    _scanningSubscription = FlutterBluePlus.isScanning.listen((isScanning) {
+      if (mounted) {
+        setState(() {
+          _isScanning = isScanning;
+        });
+      }
+    });
     _checkBluetoothAndScan();
   }
 
@@ -41,24 +51,14 @@ class _ScanPageState extends State<ScanPage> {
   Future<void> _startScan() async {
     if (!mounted) return;
 
-    setState(() {
-      _isScanning = true;
-    });
-
     try {
-      await _bluetoothService.startScan();
+      await _bluetoothService.startScan(timeout: const Duration(seconds: 30));
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('Error starting scan: $e')));
       }
-    }
-
-    if (mounted) {
-      setState(() {
-        _isScanning = false;
-      });
     }
   }
 
@@ -99,6 +99,7 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   void dispose() {
+    _scanningSubscription?.cancel();
     _bluetoothService.stopScan();
     super.dispose();
   }
@@ -120,9 +121,6 @@ class _ScanPageState extends State<ScanPage> {
             onPressed: () async {
               if (_isScanning) {
                 await _bluetoothService.stopScan();
-                setState(() {
-                  _isScanning = false;
-                });
               } else {
                 _startScan();
               }
